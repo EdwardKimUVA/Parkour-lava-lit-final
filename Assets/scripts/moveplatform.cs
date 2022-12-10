@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class moveplatform : MonoBehaviour
 {
-    [SerializeField] GameObject detect, door;
+    [SerializeField] GameObject player, plat;
 
     bool isOnPlatformDeteced;
     // Start is called before the first frame update
@@ -17,17 +17,14 @@ public class moveplatform : MonoBehaviour
     void Update()
     {
         //door.GetComponent<MoveToLocation>().enabled = true;
-        if(isRedCubeDetected && isBlueCubeDeteced){
-            areBothCubesDetected = true;
-        }
-        if (areBothCubesDetected)
+        if (isOnPlatformDeteced)
         {
-            door.GetComponent<MoveToLocation>().enabled = true;
+            plat.GetComponent<MoveToLocation>().enabled = true;
         } 
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject == blueCube.gameObject)
+        if (other.gameObject == player.gameObject)
         {
             isOnPlatformDeteced = true;
         }
